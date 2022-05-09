@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    android:padding="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/articleImageView"
+            android:layout_width="120dp"
+            android:layout_height="0dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitXY"
+            android:contentDescription="@string/article_img_description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/articleTitleTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="here is a title of the article"
+            android:padding="10dp"
+            android:layout_marginEnd="10dp"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/articleImageView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/articleSourceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:text="اليوم السابع"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="?android:attr/textColorSecondary"
+            app:layout_constraintStart_toEndOf="@+id/articleImageView"
+            app:layout_constraintTop_toBottomOf="@+id/articleTitleTextView" />
+
+        <ImageButton
+            android:id="@+id/articleShareBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="12dp"
+            android:backgroundTint="@color/white"
+            android:scaleType="fitXY"
+            android:src="@drawable/share_icon"
+            android:contentDescription="@string/article_share_btn_description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/articleSaveBtn" />
+
+        <ImageButton
+            android:id="@+id/articleSaveBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_toStartOf="@id/articleShareBtn"
+            android:backgroundTint="@color/white"
+            android:scaleType="fitXY"
+            android:src="@drawable/save_icon"
+            android:contentDescription="@string/article_save_btn_description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/dateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="منذ 5 يوم"
+            android:padding="10dp"
+            android:textAppearance="?attr/textAppearanceBody2"
+            android:textColor="?android:attr/textColorSecondary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/articleImageView"
+            app:layout_constraintTop_toBottomOf="@+id/articleSourceTextView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
