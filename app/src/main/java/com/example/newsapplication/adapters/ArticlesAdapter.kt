@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.domain.models.NewsArticle
 import com.example.newsapplication.R
 import com.example.newsapplication.databinding.ArticleItemBinding
+import java.time.ZonedDateTime
 
 class ArticlesAdapter: ListAdapter<NewsArticle, ArticlesAdapter.ArticlesViewHolder>(ArticlesDiffCallBacks()) {
 
@@ -30,7 +31,7 @@ class ArticlesAdapter: ListAdapter<NewsArticle, ArticlesAdapter.ArticlesViewHold
                 .into(binding.articleImageView)
             binding.articleTitleTextView.text=data.title
             binding.articleSourceTextView.text=data.articleSource!!.name
-        //    binding.dateTextView.text=data.publishedAt
+            binding.dateTextView.text= ZonedDateTime.parse(data.publishedAt).toString().substring(0,10)
         }
     }
 
