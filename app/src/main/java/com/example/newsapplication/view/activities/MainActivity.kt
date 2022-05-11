@@ -2,12 +2,9 @@ package com.example.newsapplication.view.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager.widget.ViewPager
 import com.example.newsapplication.adapters.ViewPagerAdapter
 import com.example.newsapplication.databinding.ActivityMainBinding
-import com.example.newsapplication.view.fragments.FavouriteArticlesFragment
-import com.example.newsapplication.view.fragments.GeneralArticlesFragment
-import com.example.newsapplication.view.fragments.LocalArticlesFragment
+import com.google.android.material.tabs.TabLayout
 
 
 class MainActivity : AppCompatActivity() {
@@ -20,21 +17,32 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        setupViewPager(binding.viewPager)
+        setupViewPager()
 
-        binding.tabs.setupWithViewPager(binding.viewPager)
     }
 
-    private fun setupViewPager(viewpager: ViewPager) {
-        var adapter: ViewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
+    private fun setupTabs(){
+        binding.tabs.addTab(binding.tabs.newTab().setText("Local"))
+        binding.tabs.addTab(binding.tabs.newTab().setText("General"))
+        binding.tabs.addTab(binding.tabs.newTab().setText("Saved"))
 
-        // LoginFragment is the name of Fragment and the Login
-        // is a title of tab
-        adapter.addFragment(LocalArticlesFragment(), "Local articles")
-        adapter.addFragment(GeneralArticlesFragment(), "General articles")
-        adapter.addFragment(FavouriteArticlesFragment(), "Saved articles")
+        binding.tabs.tabGravity = TabLayout.GRAVITY_FILL
+    }
 
-        // setting adapter to view pager.
-        viewpager.adapter = adapter
+    private fun setupViewPager() {
+        setupTabs()
+
+        val adapter = ViewPagerAdapter( supportFragmentManager, binding.tabs.tabCount)
+        binding.viewPager.adapter = adapter
+        binding.viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(binding.tabs))
+
+        binding.tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                binding.viewPager.currentItem = tab.position
+            }
+            override fun onTabUnselected(tab: TabLayout.Tab) {}
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
+
     }
 }

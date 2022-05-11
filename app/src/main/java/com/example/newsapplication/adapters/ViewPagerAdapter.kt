@@ -1,30 +1,42 @@
 package com.example.newsapplication.adapters
 
-import androidx.annotation.Nullable
+
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.FragmentStatePagerAdapter
+import com.example.newsapplication.view.fragments.FavouriteArticlesFragment
+import com.example.newsapplication.view.fragments.GeneralArticlesFragment
+import com.example.newsapplication.view.fragments.LocalArticlesFragment
 
-class ViewPagerAdapter(fragmentManager: FragmentManager): FragmentStatePagerAdapter(fragmentManager) {
-
-    private final var fragmentList1: ArrayList<Fragment> = ArrayList()
-    private final var fragmentTitleList1: ArrayList<String> = ArrayList()
+class ViewPagerAdapter(fm: FragmentManager,
+                       var totalTabs: Int,): FragmentStatePagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
-        return fragmentList1[position]
+        return when (position) {
+            0 -> {
+                LocalArticlesFragment()
+            }
+            1 -> {
+                GeneralArticlesFragment()
+            }
+            2 -> {
+                FavouriteArticlesFragment()
+            }
+            else -> getItem(position)
+        }
     }
 
     override fun getPageTitle(position: Int): CharSequence {
-        return fragmentTitleList1[position]
+        return when (position) {
+            0 -> "Local"
+            1 -> "General"
+            2 -> "Saved"
+            else -> ""
+        }
     }
 
     override fun getCount(): Int {
-        return fragmentList1.size
+        return totalTabs
     }
 
-    fun addFragment(fragment: Fragment, title: String) {
-        fragmentList1.add(fragment)
-        fragmentTitleList1.add(title)
-    }
 }

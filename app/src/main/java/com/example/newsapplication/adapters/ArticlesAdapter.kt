@@ -1,5 +1,6 @@
 package com.example.newsapplication.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
@@ -12,7 +13,7 @@ import com.example.newsapplication.R
 import com.example.newsapplication.databinding.ArticleItemBinding
 import java.time.ZonedDateTime
 
-class ArticlesAdapter: ListAdapter<NewsArticle, ArticlesAdapter.ArticlesViewHolder>(ArticlesDiffCallBacks()) {
+class ArticlesAdapter(private val onItemClickListener: OnItemClickListener): ListAdapter<NewsArticle, ArticlesAdapter.ArticlesViewHolder>(ArticlesDiffCallBacks()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticlesViewHolder {
         return ArticlesViewHolder(
@@ -21,6 +22,10 @@ class ArticlesAdapter: ListAdapter<NewsArticle, ArticlesAdapter.ArticlesViewHold
     }
 
     override fun onBindViewHolder(holder: ArticlesViewHolder, position: Int) {
+        val newsArticle=getItem(position)
+        holder.itemView.setOnClickListener{
+            onItemClickListener.onClick(newsArticle)
+        }
         holder.bind(getItem(position))
     }
 
@@ -34,6 +39,16 @@ class ArticlesAdapter: ListAdapter<NewsArticle, ArticlesAdapter.ArticlesViewHold
             binding.articleTitleTextView.text=data.title
             binding.articleSourceTextView.text=data.articleSource!!.name
             binding.dateTextView.text= ZonedDateTime.parse(data.publishedAt).toString().substring(0,10)
+
+            binding.articleShareBtn.setOnClickListener{
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, "${data.title} \n ${data.url}")
+                    type = "text/plain"
+                }
+                val shareIntent = Intent.createChooser(sendIntent, null)
+                binding.root.context.startActivity(shareIntent)
+            }
         }
     }
 
@@ -51,6 +66,12 @@ class ArticlesAdapter: ListAdapter<NewsArticle, ArticlesAdapter.ArticlesViewHold
 
         override fun areContentsTheSame(oldItem: NewsArticle, newItem: NewsArticle): Boolean {
             return oldItem==newItem
+        }
+    }
+
+    class OnItemClickListener(val clickListener: (newsArticle:NewsArticle)->Unit){
+        fun onClick(newsArticle: NewsArticle){
+            clickListener(newsArticle)
         }
     }
 }
