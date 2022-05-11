@@ -32,7 +32,7 @@ class StateData<T> {
     }
 
     enum class DataStatus {
-        SUCCESS, ERROR, LOADING, WARNING
+        SUCCESS, ERROR, LOADING
     }
 
 }

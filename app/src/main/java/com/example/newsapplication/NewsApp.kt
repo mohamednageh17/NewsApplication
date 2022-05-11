@@ -3,10 +3,10 @@ package com.example.newsapplication
 import android.app.Application
 import com.example.data.di.networkModule
 import com.example.data.di.repositoryModule
-import com.example.domain.di.useCaseModule
+import com.example.domain.di.newsByCategoryUseCaseModule
+import com.example.domain.di.newsByCountryUseCaseModule
 import com.example.newsapplication.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 
 class NewsApp : Application() {
@@ -22,7 +22,8 @@ class NewsApp : Application() {
                 listOf(
                     networkModule,
                     repositoryModule,
-                    useCaseModule,
+                    newsByCountryUseCaseModule,
+                    newsByCategoryUseCaseModule,
                     viewModelModule,
                 )
             )

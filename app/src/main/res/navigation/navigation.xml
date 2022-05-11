@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/articlesFragment"
-        android:name="com.example.newsapplication.view.fragments.ArticlesFragment"
+        android:name="com.example.newsapplication.view.fragments.LocalArticlesFragment"
         android:label="ArticlesFragment" />
 </navigation>

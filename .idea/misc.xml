@@ -6,6 +6,9 @@
         <entry key="..\:/1-Projects/Android/NewsApplication/app/src/main/res/layout/activity_main.xml" value="0.24010416666666667" />
         <entry key="..\:/1-Projects/Android/NewsApplication/app/src/main/res/layout/article_item.xml" value="0.176" />
         <entry key="..\:/1-Projects/Android/NewsApplication/app/src/main/res/layout/articles_fragment.xml" value="0.20863616930312098" />
+        <entry key="..\:/1-Projects/Android/NewsApplication/app/src/main/res/layout/category_articles_fragment.xml" value="0.20863616930312098" />
+        <entry key="..\:/1-Projects/Android/NewsApplication/app/src/main/res/layout/favourite_articles_fragment.xml" value="0.20863616930312098" />
+        <entry key="..\:/1-Projects/Android/NewsApplication/app/src/main/res/layout/local_articles_fragment.xml" value="0.20863616930312098" />
       </map>
     </option>
   </component>

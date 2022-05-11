@@ -2,6 +2,7 @@ package com.example.newsapplication.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,7 @@ class ArticlesAdapter: ListAdapter<NewsArticle, ArticlesAdapter.ArticlesViewHold
 
     class ArticlesViewHolder(private val binding: ArticleItemBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(data:NewsArticle){
+            binding.root.animation= AnimationUtils.loadAnimation(binding.root.context, R.anim.animation)
             Glide.with(binding.articleImageView)
                 .load(data.urlToImage)
                 .placeholder(R.drawable.no_image)

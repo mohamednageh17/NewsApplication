@@ -7,5 +7,10 @@ import retrofit2.http.Query
 
 interface NewsApi {
     @GET("top-headlines")
-    fun fetchNews(@Query("country")countryName:String):Single<NewsResponse>
+    fun fetchNewsByCountry(@Query("country")countryName:String="eg",
+                           @Query("pageSize")pageSize:Int=100):Single<NewsResponse>
+
+    @GET("top-headlines")
+    fun fetchNewsByCategory(@Query("category")countryName:String,
+                            @Query("pageSize")pageSize:Int=100):Single<NewsResponse>
 }
