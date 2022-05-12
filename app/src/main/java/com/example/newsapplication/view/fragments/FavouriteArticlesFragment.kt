@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.newsapplication.databinding.FavouriteArticlesFragmentBinding
 
-class FavouriteArticlesFragment:Fragment() {
+class FavouriteArticlesFragment:BaseFragment() {
     private lateinit var binding:FavouriteArticlesFragmentBinding
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -16,5 +16,18 @@ class FavouriteArticlesFragment:Fragment() {
     ): View? {
         binding= FavouriteArticlesFragmentBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setProgress(binding.progressBar)
+
+        setupRecyclerView()
+        articlesObserver()
+    }
+
+    private fun setupRecyclerView(){
+        binding.recyclerView.adapter=adapter
     }
 }
